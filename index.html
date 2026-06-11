@@ -1,20 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GameZone</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+<meta charset="UTF-8">
+<title>GameZone</title>
 
-    <div class="hero">
-        <h1>🎮 GameZone</h1>
-        <p>The ultimate gaming website.</p>
-        <button>Play Now</button>
-    </div>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0f1a;
+    color: white;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    background: #11182a;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 50px;
+}
+
+/* GAME CARD */
+.game-card {
+    width: 250px;
+    background: #1a2238;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.game-card button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    background: #00d4ff;
+    font-weight: bold;
+}
+
+/* OVERLAY (Poki style game screen) */
+#gameOverlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    z-index: 9999;
+}
+
+#gameFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>🎮 GameZone</h1>
+    <p>The ultimate gaming website.</p>
+</div>
+
+<!-- GAME LIST -->
+<div class="game-card">
+    <h2>🏎️ VortexVelocity</h2>
+    <p>High-speed racing game with upgrades</p>
+    <button onclick="openGame('vortexvelocity')">PLAY</button>
+</div>
+
+<!-- GAME OVERLAY -->
+<div id="gameOverlay">
+    <button id="closeBtn" onclick="closeGame()">✖ Close</button>
+    <iframe id="gameFrame"></iframe>
+</div>
+
+<!-- SCRIPT -->
+<script>
+function openGame(name) {
+    document.getElementById("gameOverlay").style.display = "block";
+    document.getElementById("gameFrame").src = "games/" + name + ".html";
+    document.body.style.overflow = "hidden";
+}
+
+function closeGame() {
+    document.getElementById("gameOverlay").style.display = "none";
+    document.getElementById("gameFrame").src = "";
+    document.body.style.overflow = "auto";
+}
+</script>
+
 </body>
 </html>
